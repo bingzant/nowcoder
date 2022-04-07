@@ -1,0 +1,9 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int k;
+    string s;
+    cin >> s >> k;
+    cout << s.substr(0, k);
+}
