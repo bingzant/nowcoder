@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+    char target;
+    cin >> target;
+    int count = 0;
+    if (target >= 'a' && target <= 'z') {
+        target = toupper(target);
+    }
+    for (char &ch: s) {
+        if(ch >= 'a' && ch <= 'z') {
+            ch = toupper(ch);
+        }
+        if(ch == target) {
+            ++count;
+        }
+    }
+    cout << count;
+    return 0;
+}
