@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    int rabit[3] = {1,0,0};
+    for (int i = 1; i < n; ++i) {
+        rabit[2] = rabit[2] + rabit[1];
+        rabit[1] = rabit[0];
+        rabit[0] = rabit[2];
+    }
+    cout << rabit[0] + rabit[1] + rabit[2];
+    return 0;
+}
