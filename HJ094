@@ -1,0 +1,36 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+using namespace std;
+
+int main() {
+    int n;
+    while (cin >> n) {
+        unordered_map<string, int> mp;
+        vector<string> names;
+        while (n--) {
+            string s;
+            cin >> s;
+            names.push_back(s);
+            mp.insert(pair<string, int> (s, 0));
+        }
+        int k;
+        cin >> k;
+        int invalid = 0;
+        while (k--) {
+            string s;
+            cin >> s;
+            if (mp.find(s) == mp.end()) {
+                ++invalid;
+                continue;
+            } else {
+                mp[s] += 1;
+            }
+        }
+        for (auto &x: names) {
+            cout << x << " : " << mp[x] <<endl;
+        }
+        cout << "Invalid : " << invalid <<endl;
+    }
+    return 0;
+}
