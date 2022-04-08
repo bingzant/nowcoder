@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+struct ListNode {
+    int m_nKey;
+    ListNode *m_pNext;
+};
+
+int main() {
+    int n;
+    while (cin >> n) {
+        int k;
+        ListNode *head = nullptr, *cur = nullptr;
+        while (n--) {
+            cin >> k;
+            ListNode *node = new ListNode();
+            node -> m_nKey = k;
+            if (!head) {
+                head = node;
+            } else {
+                cur -> m_pNext = node;
+            }
+            cur = node;
+            }
+        cin >> k;
+        ListNode *fast = head;       
+        while (k--) {
+            fast = fast -> m_pNext;
+        }
+        ListNode *slow = head;
+        while (fast) {
+            fast = fast -> m_pNext;
+            slow = slow -> m_pNext;
+        }
+        cout << slow -> m_nKey << endl;
+    }
+    return 0;
+}
