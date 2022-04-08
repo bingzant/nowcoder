@@ -1,0 +1,33 @@
+#include <iostream>
+#include <map>
+#include <algorithm>
+#include <vector>
+using namespace std;
+
+bool cmp(pair<char, int> a, pair<char, int> b) {
+    if (a.second == b.second) {
+        return a.first < b.first;
+    }
+    return a.second > b.second;
+}
+
+int main() {
+    string s;
+    while (cin >> s) {
+        map<char, int> mp;
+        for (char &ch: s) {
+            if (mp.find(ch) == mp.end()) {
+                mp.insert(pair<char, int> (ch, 1));
+            } else {
+                mp[ch] += 1;
+            }
+        }
+        vector<pair<char, int>> v(mp.begin(), mp.end());
+        sort(v.begin(), v.end(), cmp);
+        for (auto &x: v) {
+            cout << x.first;
+        }
+        cout <<endl;
+    }
+    return 0;
+}
