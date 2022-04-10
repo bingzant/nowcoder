@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// bool cmp(string a, string b) {
+//     int lenA = a.size(), lenB = b.size();
+//     for (int i = 0; i < min(lenA, lenB); ) {
+//         if (toupper(a[i]) == toupper(b[i])) {
+//             ++i;
+//         } else {
+//             return toupper(a[i]) <= toupper(b[i]);
+//         }
+//     }
+//     return lenA <= lenB;
+// }
+
+int main() {
+    int n;
+    cin >> n;
+    string s;
+    vector<string> v;
+    while (cin >> s) {
+        v.push_back(s);
+    }
+//     sort(v.begin(), v.end(), cmp);
+    sort(v.begin(), v.end());
+    for (string &x: v) {
+        cout << x << endl;
+    }
+    return 0;
+}
