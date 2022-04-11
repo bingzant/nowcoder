@@ -1,0 +1,76 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+struct ListNode {
+    int value;
+    ListNode *pNext;
+    ListNode(int val): value(val), pNext(nullptr) {}
+};
+
+int main() {
+    int n;
+    cin >> n;
+    int x;
+    cin >> x;
+    ListNode *pHead = new ListNode(x);
+    --n;
+    set<int> nodes;
+    nodes.insert(x);
+    while (n--) {
+        int after, before;
+        cin >> after >> before;
+        ListNode *pAfter, *pBefore;
+        if (nodes.find(after) == nodes.end()){
+            pAfter = new ListNode(after);
+            nodes.insert(after);
+        } else {
+            ListNode *tmp = pHead;
+            while (tmp) {
+                if (tmp -> value == before){
+                    pBefore = tmp;
+                    break;
+                } 
+                tmp = tmp -> pNext;
+            }
+        }
+        if (nodes.find(before) == nodes.end()) {
+            pBefore = new ListNode(before);
+            nodes.insert(before);
+        } else {
+            ListNode *tmp = pHead;
+            while (tmp) {
+                if (tmp -> value == before){
+                    pBefore = tmp;
+                    break;
+                } 
+                tmp = tmp -> pNext;
+            }
+        }
+        if (pBefore -> pNext != nullptr) {
+            swap(pBefore -> pNext, pAfter -> pNext);
+        }
+        pBefore -> pNext = pAfter;
+    }
+    int del;
+    cin >> del;
+    if (pHead -> value == del) {
+        pHead = pHead -> pNext;
+    } else {
+        ListNode *cur = pHead, *next = pHead -> pNext;
+        while (next) {
+            if (next -> value == del) {
+                cur -> pNext = next -> pNext;
+                break;
+            }
+            cur = next;
+            next = next -> pNext;
+        }
+    }
+    ListNode *tmp = pHead;
+    while (tmp) {
+        cout << tmp -> value << ' ';
+        tmp = tmp -> pNext;
+    }
+    return 0;
+}
