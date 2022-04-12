@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string s;
+    getline(cin, s);
+    int n;
+    cin >> n;
+    int maxRight = n - 1, count = 0;
+    for (int i = 0; i < n; ++i) {
+        if (s[i] == 'G' || s[i] == 'C') ++count;
+    }
+    int maxCount = count;
+    for (int i = n; i < s.size() - 1; ++i) {
+        if (s[i] == 'G' || s[i] == 'C') ++count;
+        if (s[i - n] == 'G' || s[i - n] == 'C') --count;
+        if (count > maxCount) {
+            maxCount = count;
+            maxRight = i;
+        }
+    }
+    for (int i = maxRight - n + 1; i <= maxRight; ++i) {
+        cout << s[i];
+    }
+    return 0;
+}
