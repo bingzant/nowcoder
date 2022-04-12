@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<pair<int, int>> ans;
+
+void dfs(vector<vector<int>> &nums, vector<pair<int, int>> &path, int n, int m, int row, int col) {
+    path.push_back(pair<int, int> (row, col));
+    nums[row][col] = 1;
+    
+    if (row == n - 1 && col == m - 1) {
+        ans = path;
+        return;
+    }
+
+    if (row + 1 < n && nums[row + 1][col] == 0)
+        dfs(nums, path, n, m, row + 1, col);
+    if (row - 1 >= 0 && nums[row - 1][col] == 0)
+        dfs(nums, path, n, m, row - 1, col);
+    if (col + 1 < m && nums[row][col + 1] == 0)
+        dfs(nums, path, n, m, row, col + 1);
+    if (col - 1 >= 0 && nums[row][col - 1] == 0)
+        dfs(nums, path, n, m, row, col - 1);
+    path.pop_back();
+    nums[row][col] = 0;
+    return;
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    vector<vector<int>> nums(n, vector<int>(m));
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < m; ++j) {
+            int x;
+            cin >> x;
+            nums[i][j] = x;
+        }
+    }
+    vector<pair<int, int>> path;
+    dfs(nums, path, n, m, 0, 0);
+    for (auto &x: ans) {
+        cout  << '(' << x.first << ',' << x.second << ')' << endl;
+    }
+    return 0;
+}
