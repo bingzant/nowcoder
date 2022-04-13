@@ -1,0 +1,37 @@
+#include <iostream>
+#include <algorithm>
+#include <stack>
+using namespace std;
+
+bool check(int in[], int out[], int n) {
+    stack<int> st;
+    int k = 0;
+    for (int i = 0; i < n; ++i) {
+        st.push(in[i]);
+        while (!st.empty() && st.top() == out[k]) {
+            st.pop();
+            ++k;
+        }
+    }
+    return st.empty();
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int nums[n], cpy[n];
+    for (int i = 0; i < n; ++i) {
+        cin >> nums[i];
+        cpy[i] = nums[i];
+    }
+    sort(cpy, cpy+n);
+    do {
+        if (check(nums, cpy, n)) {
+            for (int &x: cpy) {
+                cout << x << ' ';
+            }
+            cout << endl;
+        }
+    } while (next_permutation(cpy, cpy+n));    
+    return 0;
+}
