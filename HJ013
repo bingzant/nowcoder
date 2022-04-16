@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+    string s;
+    while (getline(cin, s)) {
+        string ans = "";
+        string tmp;
+        for (char &ch: s) {
+            if (ch == ' ') {
+                ans = ' ' + tmp + ans;
+                tmp = "";
+            } else {
+                tmp += ch;
+            }
+        }
+        ans = tmp + ans;
+        cout << ans;
+    }
+    return 0;
+}
