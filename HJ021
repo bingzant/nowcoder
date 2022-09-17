@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    string s;
+    cin >> s;
+    string ans;
+    for (char &ch : s) {
+        if ('a' <= ch && ch <= 'c') cout << '2';
+        else if ('d' <= ch && ch <= 'f') cout << '3';
+        else if ('g' <= ch && ch <= 'i') cout << '4';
+        else if ('j' <= ch && ch <= 'l') cout << '5';
+        else if ('m' <= ch && ch <= 'o') cout << '6';
+        else if ('p' <= ch && ch <= 's') cout << '7';
+        else if ('t' <= ch && ch <= 'v') cout << '8';
+        else if ('w' <= ch && ch <= 'z') cout << '9';
+        else if (isupper(ch)) {
+            if (ch == 'Z') cout << 'a';
+            else cout << char(tolower(ch) + 1);
+        } else cout << ch;
+    }
+}
