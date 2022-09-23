@@ -1,0 +1,11 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    for (int x = 0 ; 25 - 7 * x / 4 >= 0; x = x + 4) {
+        cout << x << ' ' << 25 - 7 * x / 4 << ' ' << 75 + 3 * x / 4 << endl; 
+    }
+    
+}
