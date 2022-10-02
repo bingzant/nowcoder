@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+    string s;
+    cin >> s;
+    bool haveUpper = 0, haveLower = 0;
+    int numsCount = 0, symCount = 0;
+    for (char &ch: s) {
+        if (isalnum(ch) > 0) {
+            if (isalpha(ch) > 0) {
+                if (isupper(ch) > 0) {
+                    haveUpper = 1;
+                } else {
+                    haveLower = 1;
+                }
+            } else {
+                numsCount++;
+            }
+        } else {
+            symCount++;
+        }
+    }
+    int score = 0;
+    int len = s.size();
+    if (len <= 4) score += 5;
+    else if (len <= 7) score += 10;
+    else score += 25;
+
+    if (haveLower && haveUpper) score+= 20;
+    else if (haveLower || haveUpper) score += 10;
+    
+    if (numsCount > 1) score += 20;
+    else if (numsCount == 1) score += 10;
+
+    if (symCount > 1) score += 25;
+    else if (symCount == 1) score += 10;
+
+    if (haveLower && haveUpper && numsCount && symCount) score += 5;
+    else if ((haveLower || haveUpper) && numsCount && symCount) score += 3;
+    else if ((haveLower || haveUpper) && numsCount) score += 2;
+
+    if (score >= 90) cout << "VERY_SECURE" << endl;
+    else if (score >= 80) cout << "SECURE" << endl;
+    else if (score >= 70) cout << "VERY_STRONG" << endl;
+    else if (score >= 60) cout << "STRONG" << endl;
+    else if (score >= 50) cout << "AVERAGE" << endl;
+    else if (score >= 25) cout << "WEAK" << endl;
+    else if (score >= 0) cout << "VERY_WEAK" << endl;
+}
